@@ -12,13 +12,21 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#06b6d4', // Cyan 500
-                        'secondary': '#1e293b', // Slate 800
-                        'dark-bg': '#0f172a', // Slate 900
+                        // Primary: Vibrant Orange
+                        'primary': '#f97316', 
+                        // Accent: Electric Pink/Magenta for contrast
+                        'accent': '#ec4899', 
+                        'secondary': '#1f2937', // Dark Gray 800
+                        'dark-bg': '#0f172a', // Deep Slate 900 (main background)
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
+                    // Custom shadow for a glowing effect
+                    boxShadow: {
+                        'glow-primary': '0 20px 40px -10px rgba(249, 115, 22, 0.5)',
+                        'glow-accent': '0 10px 30px -5px rgba(236, 72, 153, 0.4)',
+                    }
                 }
             }
         }
@@ -28,36 +36,44 @@
         html {
             scroll-behavior: smooth;
         }
+        /* Custom Keyframe for a slight pulse effect on the hero */
+        @keyframes pulse-float {
+            0%, 100% { transform: translateY(0); box-shadow: 0 10px 20px -5px rgba(249, 115, 22, 0.4); }
+            50% { transform: translateY(-3px); box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.6); }
+        }
+        .hero-pulse {
+            animation: pulse-float 4s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-dark-bg text-gray-100 min-h-screen">
 
     <div class="max-w-5xl mx-auto p-4 md:p-8">
-        <!-- Navigation Menu -->
-        <nav class="sticky top-0 z-10 bg-dark-bg/90 backdrop-blur-sm rounded-full mb-8 p-3 shadow-xl">
-            <ul class="flex justify-center space-x-6 text-sm font-medium">
-                <li><a href="#about" class="hover:text-primary transition duration-300 p-2 rounded-full">About</a></li>
-                <li><a href="#education" class="hover:text-primary transition duration-300 p-2 rounded-full">Education</a></li>
-                <li><a href="#skills" class="hover:text-primary transition duration-300 p-2 rounded-full">Skills</a></li>
-                <li><a href="#contact" class="hover:text-primary transition duration-300 p-2 rounded-full">Contact</a></li>
+        <!-- Navigation Menu - Clean, slightly transparent background -->
+        <nav class="sticky top-0 z-10 bg-dark-bg/80 backdrop-blur-md rounded-full mb-10 p-3 shadow-xl shadow-gray-900/50">
+            <ul class="flex justify-center space-x-6 text-sm font-extrabold">
+                <li><a href="#about" class="hover:text-accent transition duration-300 p-2 rounded-full transform hover:scale-105">About</a></li>
+                <li><a href="#education" class="hover:text-accent transition duration-300 p-2 rounded-full transform hover:scale-105">Education</a></li>
+                <li><a href="#skills" class="hover:text-accent transition duration-300 p-2 rounded-full transform hover:scale-105">Skills</a></li>
+                <li><a href="#contact" class="hover:text-accent transition duration-300 p-2 rounded-full transform hover:scale-105">Contact</a></li>
             </ul>
         </nav>
 
-        <!-- Hero Section -->
-        <header class="text-center py-16 md:py-24 bg-secondary rounded-xl shadow-2xl mb-12">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 leading-tight">
+        <!-- Hero Section - Uses a dual-color gradient and pulse animation -->
+        <header class="text-center py-16 md:py-24 bg-gradient-to-br from-primary to-accent rounded-3xl shadow-glow-primary mb-12 transform hero-pulse">
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-4 leading-tight tracking-wider">
                 Lakshmi Parvathi
             </h1>
-            <p class="text-xl md:text-3xl font-light text-primary tracking-widest uppercase">
+            <p class="text-xl md:text-3xl font-extrabold text-white tracking-widest uppercase opacity-90">
                 Computer Engineering Student
             </p>
-            <p class="mt-4 text-md text-gray-400">
+            <p class="mt-4 text-lg text-gray-900 font-bold">
                 Thrissur, Kerala
             </p>
         </header>
 
-        <!-- About Me Section -->
-        <section id="about" class="mb-12 p-8 bg-gray-800 rounded-xl shadow-lg border-t-4 border-primary/50">
+        <!-- About Me Section - Accent border and enhanced shadow -->
+        <section id="about" class="mb-12 p-8 bg-secondary rounded-xl shadow-glow-accent border-l-8 border-accent transition duration-300 hover:shadow-2xl hover:shadow-accent/40">
             <h2 class="text-3xl font-bold mb-6 border-b pb-2 border-gray-700 text-primary">About Me</h2>
             <div class="text-lg space-y-4 text-gray-300">
                 <p>
@@ -70,12 +86,12 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="mb-12 p-8 bg-gray-800 rounded-xl shadow-lg border-t-4 border-primary/50">
+        <section id="education" class="mb-12 p-8 bg-secondary rounded-xl shadow-glow-accent border-l-8 border-accent transition duration-300 hover:shadow-2xl hover:shadow-accent/40">
             <h2 class="text-3xl font-bold mb-6 border-b pb-2 border-gray-700 text-primary">Education</h2>
             <div class="space-y-4">
-                <div class="bg-secondary p-6 rounded-lg shadow-md">
+                <div class="bg-dark-bg p-6 rounded-lg shadow-xl border-t-4 border-primary transition duration-300 transform hover:translate-y-[-4px] hover:shadow-glow-primary">
                     <h3 class="text-2xl font-semibold text-white">B.Tech in Computer Engineering</h3>
-                    <p class="text-lg text-primary mt-1">Vidya Academy of Science and Technology (VAST)</p>
+                    <p class="text-lg text-accent mt-1 font-extrabold">Vidya Academy of Science and Technology (VAST)</p>
                     <p class="text-md text-gray-400 mt-2">
                         Currently focused on: Data Structures & Algorithms, Object-Oriented Programming (OOP), and Web Technologies.
                     </p>
@@ -85,55 +101,58 @@
             </div>
         </section>
 
-        <!-- Skills Section (Placeholder) -->
-        <section id="skills" class="mb-12 p-8 bg-gray-800 rounded-xl shadow-lg border-t-4 border-primary/50">
+        <!-- Skills Section - Dynamic hover effects on cards -->
+        <section id="skills" class="mb-12 p-8 bg-secondary rounded-xl shadow-glow-accent border-l-8 border-accent transition duration-300 hover:shadow-2xl hover:shadow-accent/40">
             <h2 class="text-3xl font-bold mb-6 border-b pb-2 border-gray-700 text-primary">Key Skills</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Skill Card 1 -->
-                <div class="bg-secondary p-4 rounded-lg text-center hover:bg-primary/20 transition duration-300 transform hover:scale-105">
-                    <p class="text-xl font-medium">Python</p>
+                <div class="bg-dark-bg p-4 rounded-lg text-center shadow-lg transition duration-300 transform hover:scale-110 hover:shadow-xl hover:shadow-accent/40 border-b-4 border-transparent hover:border-accent">
+                    <p class="text-xl font-medium text-accent">Python</p>
                     <p class="text-sm text-gray-400">Scripting & Automation</p>
                 </div>
                 <!-- Skill Card 2 -->
-                <div class="bg-secondary p-4 rounded-lg text-center hover:bg-primary/20 transition duration-300 transform hover:scale-105">
-                    <p class="text-xl font-medium">C/C++</p>
+                <div class="bg-dark-bg p-4 rounded-lg text-center shadow-lg transition duration-300 transform hover:scale-110 hover:shadow-xl hover:shadow-primary/40 border-b-4 border-transparent hover:border-primary">
+                    <p class="text-xl font-medium text-primary">C/C++</p>
                     <p class="text-sm text-gray-400">DSA & Low-Level</p>
                 </div>
                 <!-- Skill Card 3 -->
-                <div class="bg-secondary p-4 rounded-lg text-center hover:bg-primary/20 transition duration-300 transform hover:scale-105">
-                    <p class="text-xl font-medium">Web Development</p>
+                <div class="bg-dark-bg p-4 rounded-lg text-center shadow-lg transition duration-300 transform hover:scale-110 hover:shadow-xl hover:shadow-accent/40 border-b-4 border-transparent hover:border-accent">
+                    <p class="text-xl font-medium text-accent">Web Development</p>
                     <p class="text-sm text-gray-400">HTML, CSS, JS</p>
                 </div>
                 <!-- Skill Card 4 -->
-                <div class="bg-secondary p-4 rounded-lg text-center hover:bg-primary/20 transition duration-300 transform hover:scale-105">
-                    <p class="text-xl font-medium">Git/GitHub</p>
+                <div class="bg-dark-bg p-4 rounded-lg text-center shadow-lg transition duration-300 transform hover:scale-110 hover:shadow-xl hover:shadow-primary/40 border-b-4 border-transparent hover:border-primary">
+                    <p class="text-xl font-medium text-primary">Git/GitHub</p>
                     <p class="text-sm text-gray-400">Version Control</p>
                 </div>
                 <!-- Add more skills here -->
             </div>
         </section>
 
-        <!-- Footer / Contact Section -->
-        <footer id="contact" class="text-center pt-8 border-t border-gray-700 mt-12">
-            <h2 class="text-2xl font-bold mb-4 text-primary">Connect with Me</h2>
-            <div class="flex justify-center space-x-6 text-2xl mb-4">
-                <!-- Replace '#' with your actual profile links (e.g., LinkedIn, GitHub, Email) -->
-                <a href="#" class="hover:text-primary transition duration-300">
+        <!-- Footer / Contact Section - Highlighting the primary color -->
+        <footer id="contact" class="text-center pt-8 border-t-2 border-accent/50 mt-12">
+            <h2 class="text-3xl font-black mb-4 text-primary">Connect with Me</h2>
+            <div class="flex justify-center space-x-8 text-3xl mb-4">
+                <!-- Links alternate hover colors for a vibrant look -->
+                <a href="#" class="text-gray-300 hover:text-accent transition duration-300 transform hover:scale-125" title="LinkedIn">
                     <!-- Icon placeholder for LinkedIn -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.395-2.186 5-2.457 5 3.153v6.082z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.395-2.186 5-2.457 5 3.153v6.082z"/></svg>
                 </a>
-                <a href="#" class="hover:text-primary transition duration-300">
+                <a href="#" class="text-gray-300 hover:text-primary transition duration-300 transform hover:scale-125" title="GitHub">
                     <!-- Icon placeholder for GitHub -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.689.084-.689 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.498.998.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.292-1.552 3.3-1.23 3.3-1.23.653 1.653.242 2.874.118 3.176.766.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576c4.765-1.589 8.197-6.094 8.197-11.387c0-6.627-5.373-12-12-12z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.689.084-.689 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.498.998.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.292-1.552 3.3-1.23 3.3-1.23.653 1.653.242 2.874.118 3.176.766.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576c4.765-1.589 8.197-6.094 8.197-11.387c0-6.627-5.373-12-12-12z"/></svg>
                 </a>
-                <a href="#" class="hover:text-primary transition duration-300">
+                <a href="#" class="text-gray-300 hover:text-accent transition duration-300 transform hover:scale-125" title="Email">
                     <!-- Icon placeholder for Email -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-6.623 5.671v-13.597l6.623 7.926zm-4.623-1.526l4.444 3.593 4.444-3.593 6.666 5.378v-10.635l-11.11 8.514-11.11-8.514v10.635l6.666-5.378zm13.377 1.526l6.623-5.671v13.597l-6.623-7.926z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-6.623 5.671v-13.597l6.623 7.926zm-4.623-1.526l4.444 3.593 4.444-3.593 6.666 5.378v-10.635l-11.11 8.514-11.11-8.514v10.635l6.666-5.378zm13.377 1.526l6.623-5.671v13.597l-6.623-7.926z"/></svg>
                 </a>
             </div>
-            <p class="text-sm text-gray-500">&copy; 2025 Lakshmi Parvathi. Built with passion from Thrissur.</p>
+            <p class="text-sm text-gray-500 mt-4">&copy; 2025 Lakshmi Parvathi. Built with passion from Thrissur.</p>
         </footer>
 
     </div>
 </body>
 </html>
+
+  
+  
